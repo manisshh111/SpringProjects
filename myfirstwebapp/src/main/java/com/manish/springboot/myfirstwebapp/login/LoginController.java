@@ -24,14 +24,14 @@ public LoginController(AuthenticationService auth) {
 	}
 
 	
-	@RequestMapping(value="login", method=RequestMethod.GET)
+	@RequestMapping(value="loginPage", method=RequestMethod.GET)
 	public String GoTologinPage(){
 		
 
 		return "loginPage";
 	}
 	
-	@RequestMapping(value="login", method=RequestMethod.POST)
+	@RequestMapping(value="loginPage", method=RequestMethod.POST)
 	public String GoToWelcomePage(@RequestParam String name, @RequestParam String password, ModelMap model){
 		
 		// AuthenticationService auth = new AuthenticationService(); --> created object manually to see if it's working
