@@ -1,19 +1,19 @@
-<html>
-<head>
-<title>Welcome Page</title>
-</head>
-<body>
-<div>
+<%@ include file="common/header.jspf"%>
+<%@ include file="common/navigation.jspf"%>
 
-<h1>Welcome Mr. ${name}</h1>
+
+<div class="container">
+
+	<h1>Welcome Mr. ${name}</h1>
 	<hr>
-<p>Welcome to My ToDo App</p>
-<p> Your name is : ${name}</p>
-<p> Your password is : ${password}</p>
+	<p>Welcome to My ToDo App</p>
+	<p>Your name is : ${name}</p>
+	<p>Your password is : ${password}</p>
+
+	<div>
+		<a href="list-todos">Manage</a> your Todos
+	</div>
 </div>
-<div> <a href="list-todos">Manage</a> your Todos </div>
 
-
-</body>
-</html>
+<%@ include file="common/footer.jspf"%>
 

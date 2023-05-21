@@ -26,8 +26,6 @@ public LoginController(AuthenticationService auth) {
 	
 	@RequestMapping(value="login", method=RequestMethod.GET)
 	public String GoTologinPage(){
-		
-
 		return "loginPage";
 	}
 	
