@@ -16,14 +16,15 @@ public class TodoService {
        public static int todosCount=0;
        
        static {
-    	   todos.add(new Todo(++todosCount, "ADITYA","learn AWS",LocalDate.now().plusYears(1), false)) ;
-    	   todos.add(new Todo(++todosCount, "ADITYA","learn DevOPS",LocalDate.now().plusYears(2), false)) ;
-    	   todos.add(new Todo(++todosCount, "ADITYA","learn full stack",LocalDate.now().plusYears(3), false)) ;
+    	   todos.add(new Todo(++todosCount, "Manish","learn AWS",LocalDate.now().plusYears(1), false)) ;
+    	   todos.add(new Todo(++todosCount, "Manish","learn DevOPS",LocalDate.now().plusYears(2), false)) ;
+    	   todos.add(new Todo(++todosCount, "Manish","learn full stack",LocalDate.now().plusYears(3), false)) ;
     	   
        }
-       public static List<Todo> findByUsername(String username){
-    	   return todos  ;
-       }
+//       public static List<Todo> findByUsername(String username){
+//    	   Predicate<? super Todo> predicate= todo -> todo.getUsername().equalsIgnoreCase(username);
+//    	   return todos.stream().filter(predicate).toList()  ;
+//       }
        
        public void addTodo(String username, String description, LocalDate targetDate, boolean done) {
     	   Todo todo= new Todo(++todosCount, username, description, targetDate, done);
@@ -41,10 +42,10 @@ public class TodoService {
     	   return todo;
        }
        
-       public void updateTodo(int id) {
-    	   Predicate<? super Todo> predicate= todo -> todo.getId()==id;
-		todos.removeIf(predicate);
-       }
+//       public void updateTodo(int id) {
+//    	   Predicate<? super Todo> predicate= todo -> todo.getId()==id;
+//		todos.removeIf(predicate);
+//       }
 
 	public void updateTodo(@Valid Todo todo) {
 		// TODO Auto-generated method stub
