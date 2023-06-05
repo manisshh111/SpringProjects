@@ -7,3 +7,9 @@ label, input, button {
 
     margin-top: 15px;
 }
+
+.footer{
+    bottom: 0;
+    position: absolute;
+    width: 90%;
+}
