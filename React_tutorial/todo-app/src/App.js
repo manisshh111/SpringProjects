@@ -1,15 +1,15 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { Component } from "react";
-import Counter from "./Components/Counter/Counter";
+import TodoApp from "./Components/todo/TodoApp";
 
 function App() {
   return (
     <div className="App">
-      <Counter/>
+      <TodoApp></TodoApp>
     
 
-      {/* <PlayingWithProps property1="value1" property2= "value2"/> */}
+
     </div>
   );
 }
