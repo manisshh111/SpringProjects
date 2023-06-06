@@ -1,11 +1,17 @@
 import { Link } from "react-router-dom";
-import {AuthContext } from "./security/AuthContext";
+import {useAuth} from "./security/AuthContext";
 import { useContext } from "react";
 
 export default function HeaderComponent() {
 
-    const authContext = useContext(AuthContext);
-    console.log(authContext.number);
+    //const authContext = useContext(AuthContext);
+    const authContext= useAuth();
+    const isAuthenticated= authContext.isAuthenticated;
+    console.log(authContext);
+
+    function  logout(){
+        authContext.setAuthenticated(false);
+    }
 
     return (
         
@@ -17,14 +23,15 @@ export default function HeaderComponent() {
       </button>
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-        <li className="nav-item"><Link className="nav-link" to="/welcome/Manish">home</Link>  </li>
-        <li className="nav-item"><Link className="nav-link" to="/todos">Todos</Link>  </li>
+        {isAuthenticated && <li className="nav-item"><Link className="nav-link" to="/welcome/Manish">home</Link>  </li>}
+         {isAuthenticated && <li className="nav-item"><Link className="nav-link" to="/todos">Todos</Link>  </li>} 
         </ul>
        
       </div>
       <ul className="navbar-nav">
-        <li className="nav-item"><Link className="nav-link" to="/logout">Logout</Link>  </li>
-        <li className="nav-item"><Link className="nav-link" to="/">Login</Link>  </li>
+        {isAuthenticated && <li className="nav-item"><Link className="nav-link" to="/logout" onClick={logout}>Logout</Link>  </li>}
+        
+        {!isAuthenticated && <li className="nav-item"><Link className="nav-link" to="/">Login</Link>  </li>}
         </ul>
   
   
