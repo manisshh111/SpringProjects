@@ -29,25 +29,17 @@ export default function LoginComponent() {
 
 
     function handleSubmit() {
-      if (Username === "manish" && Password === "password") {
-        authContext.setAuthenticated(true);
-        setShowSuccessMessage(true);
-        setShowErrorMessage(false);
+      if (authContext.login(Username, Password)) {
         navigate(`/welcome/${Username}`);
        
       } else {
-        authContext.setAuthenticated(false);
-        setShowSuccessMessage(false);
         setShowErrorMessage(true);
       }
     }
   
     return (
       <div className="login">
-        {showSuccessMessage && (
-          <div className="successMessage"> Authenticated Successfully </div>
-        )}
-        {/* the div will be shown only if showSuccessMessage is true  */}
+        
         {showErrorMessage && (
           <div className="errorMessage">
             {" "}
