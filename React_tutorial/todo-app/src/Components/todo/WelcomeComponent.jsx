@@ -1,7 +1,6 @@
 import {BrowserRouter, Routes, Route, useNavigate, Navigate, useParams, Link} from "react-router-dom";
-import axios from 'axios';
 import { useState } from "react";
-
+import {retrieveHelloWorldBean, retrieveHelloWorldPathVariable} from './api/HelloWorldApiService'
 
 
 
@@ -18,11 +17,15 @@ export default function WelcomeComponent() {
       // .catch((error)=> errorResponse(error))
       // .finally(()=>console.log('CleanUP'))
 
-      axios.get('http://localhost:8080/hello-world-bean')
+      // retrieveHelloWorldBean()
+      // .then((response)=>successfulResponse(response))
+      // .catch((error)=> errorResponse(error))
+      // .finally(()=>console.log('CleanUP'))
+
+      retrieveHelloWorldPathVariable('ManishReact')
       .then((response)=>successfulResponse(response))
       .catch((error)=> errorResponse(error))
       .finally(()=>console.log('CleanUP'))
-
       
     }
 
