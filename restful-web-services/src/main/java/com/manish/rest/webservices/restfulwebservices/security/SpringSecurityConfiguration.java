@@ -16,7 +16,7 @@ public class SpringSecurityConfiguration {
 //		http.authorizeHttpRequests(
 //				auth -> auth.anyRequest().authenticated()
 //				);
-		//If a request is not authenticated, a web page is shown.
+
 		http.httpBasic(withDefaults());
 		
 		http.csrf().disable();
