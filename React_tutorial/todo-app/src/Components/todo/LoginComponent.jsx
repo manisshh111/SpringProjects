@@ -28,8 +28,8 @@ export default function LoginComponent() {
     const authContext= useAuth();
 
 
-    function handleSubmit() {
-      if (authContext.login(Username, Password)) {
+    async function handleSubmit() {
+      if (await authContext.login(Username, Password)) {
         navigate(`/welcome/${Username}`);
        
       } else {

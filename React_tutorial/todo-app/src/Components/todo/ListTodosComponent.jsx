@@ -5,30 +5,19 @@ import {useAuth} from "./security/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 
+
 export default function ListTodosComponent() {
     const today = new Date();
     const targetDate = new Date(
       today.getFullYear() + 12,
       today.getMonth(),
       today.getDay()
-
-
     );
      
-    
     const authContext= useAuth();
     const usernameFromAuthContext= authContext.usernameAuthContext.toString();
-    console.log('username from auth context is :'+{usernameFromAuthContext});
-
-
-
+    
     const[todos ,setTodos] = useState([]);
-
-    // const todos = [
-    //   { id: 1, description: "Learn AWS", done: false, targetDate: targetDate },
-    //   { id: 2, description: "Learn Full stack dev", done: false, targetDate: targetDate},
-    //   {id: 3, description: "Learn React and spring boot", done: false, targetDate: targetDate},
-    // ];
 
     useEffect(()=> refreshTodos(), []);
     //useEffect hook is used to handle side effects, such as fetching data, manipulating the DOM, or subscribing to events.
@@ -43,7 +32,7 @@ export default function ListTodosComponent() {
 
   function refreshTodos(){
 
-      retrieveAllTodosForUsernameApi(usernameFromAuthContext)
+      retrieveAllTodosForUsernameApi(usernameFromAuthContext, authContext.token)
     .then((response)=>{
       console.log(response)
       setTodos(response.data)

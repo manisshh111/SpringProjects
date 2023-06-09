@@ -20,6 +20,13 @@ public class TodoResource {
 		this.todoService=todoService;
 	}
 	
+	@GetMapping(path="/basicauth")
+	public String basicAuthCheck() {
+		return "Success";
+	}
+	
+	
+	
 	@GetMapping(path="/users/{username}/todos")
 	public List<Todo> retrieveTodos(@PathVariable String username) {
 		return todoService.findByUsername(username);

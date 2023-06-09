@@ -1,4 +1,6 @@
 import { createContext, useContext, useState } from "react";
+import { executeBasicAuthenticationService } from "../api/TodoApiService";
+import { apiClient } from "../api/ApiClient";
 
 //Create a context
 export const AuthContext= createContext();
@@ -16,30 +18,54 @@ export default function AuthProvider({children}){
 
      const[isAuthenticated, setAuthenticated] = useState(false);
      const[usernameAuthContext, setUsernameAuthContext]= useState(null);
-    //  setInterval(
-    //     ()=>setNumber(number+1),
-    //     10000
-    //  )
-      
+     const[token, setToken]= useState(null);
 
-    function login(Username, Password){
-        if (Username === "manish" && Password === "password") {
+
+
+    async function login(Username, Password){
+     
+        const baToken = 'Basic ' + window.btoa(Username + ":" + Password);
+       try{
+       const response=  await executeBasicAuthenticationService(baToken)
+        
+        if (response.status==200) {
             setAuthenticated(true);
             setUsernameAuthContext(Username);
+            setToken(baToken);
+
+            apiClient.interceptors.request.use(
+                (config)=>{
+                    console.log('Intercepting and adding a token');
+                    config.headers.Authorization=baToken
+                    return config
+                }
+            )
               return true;
           } else {
             setAuthenticated(false);
             setUsernameAuthContext(null);
+            setToken(null);
             return false;
           }
+
+        }
+        catch(error){
+            setAuthenticated(false);
+            setUsernameAuthContext(null);
+            setToken(null);
+            return false;
+        }
     }
+
+
 
     function logout(){
           setAuthenticated(false);
+          setToken(null);
     }
 
     return(
-        <AuthContext.Provider value={{isAuthenticated, setAuthenticated, login, logout, usernameAuthContext}}>
+        <AuthContext.Provider value={{isAuthenticated, setAuthenticated, login, logout, usernameAuthContext, token}}>
             {children}
         </AuthContext.Provider>
     )
