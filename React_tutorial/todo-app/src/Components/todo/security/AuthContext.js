@@ -15,6 +15,7 @@ export default function AuthProvider({children}){
     //Put some state in context
 
      const[isAuthenticated, setAuthenticated] = useState(false);
+     const[usernameAuthContext, setUsernameAuthContext]= useState(null);
     //  setInterval(
     //     ()=>setNumber(number+1),
     //     10000
@@ -24,9 +25,11 @@ export default function AuthProvider({children}){
     function login(Username, Password){
         if (Username === "manish" && Password === "password") {
             setAuthenticated(true);
+            setUsernameAuthContext(Username);
               return true;
           } else {
             setAuthenticated(false);
+            setUsernameAuthContext(null);
             return false;
           }
     }
@@ -36,7 +39,7 @@ export default function AuthProvider({children}){
     }
 
     return(
-        <AuthContext.Provider value={{isAuthenticated, setAuthenticated, login, logout}}>
+        <AuthContext.Provider value={{isAuthenticated, setAuthenticated, login, logout, usernameAuthContext}}>
             {children}
         </AuthContext.Provider>
     )

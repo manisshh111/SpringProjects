@@ -16,21 +16,21 @@ public class TodoService {
        public static int todosCount=0;
        
        static {
-    	   todos.add(new Todo(++todosCount, "Manish","learn AWS",LocalDate.now().plusYears(1), false)) ;
-    	   todos.add(new Todo(++todosCount, "Manish","learn DevOPS",LocalDate.now().plusYears(2), false)) ;
-    	   todos.add(new Todo(++todosCount, "Manish","learn full stack",LocalDate.now().plusYears(3), false)) ;
-    	   todos.add(new Todo(++todosCount, "Manish","learn dance",LocalDate.now().plusYears(1), false)) ;
-    	   todos.add(new Todo(++todosCount, "Manish","learn cooking",LocalDate.now().plusYears(2), false)) ;
-    	   todos.add(new Todo(++todosCount, "Manish","learn swimming",LocalDate.now().plusYears(3), false)) ;
-    	   todos.add(new Todo(++todosCount, "Manish","learn driving",LocalDate.now().plusYears(1), false)) ;
-    	   todos.add(new Todo(++todosCount, "Manish","learn doing chin-up",LocalDate.now().plusYears(2), false)) ;
-    	   todos.add(new Todo(++todosCount, "Manish","learn to talk",LocalDate.now().plusYears(3), false)) ;
-    	   todos.add(new Todo(++todosCount, "Manish","learn Spring Boot",LocalDate.now().plusYears(1), false)) ;
-    	   todos.add(new Todo(++todosCount, "Manish","learn Spring Security",LocalDate.now().plusYears(2), false)) ;
-    	   todos.add(new Todo(++todosCount, "Manish","learn Spring Data JPA",LocalDate.now().plusYears(3), false)) ;
-    	   todos.add(new Todo(++todosCount, "Manish","learn MySQL",LocalDate.now().plusYears(1), false)) ;
-    	   todos.add(new Todo(++todosCount, "Manish","learn Git and Git-hub",LocalDate.now().plusYears(2), false)) ;
-    	   todos.add(new Todo(++todosCount, "Manish","learn CSS",LocalDate.now().plusYears(3), false)) ;
+    	   todos.add(new Todo(++todosCount, "manish","learn AWS",LocalDate.now().plusYears(1), false)) ;
+    	   todos.add(new Todo(++todosCount, "manish","learn DevOPS",LocalDate.now().plusYears(2), false)) ;
+    	   todos.add(new Todo(++todosCount, "manish","learn full stack",LocalDate.now().plusYears(3), false)) ;
+    	   todos.add(new Todo(++todosCount, "manish","learn dance",LocalDate.now().plusYears(1), false)) ;
+    	   todos.add(new Todo(++todosCount, "manish","learn cooking",LocalDate.now().plusYears(2), false)) ;
+    	   todos.add(new Todo(++todosCount, "manish","learn swimming",LocalDate.now().plusYears(3), false)) ;
+    	   todos.add(new Todo(++todosCount, "manish","learn driving",LocalDate.now().plusYears(1), false)) ;
+    	   todos.add(new Todo(++todosCount, "manish","learn doing chin-up",LocalDate.now().plusYears(2), false)) ;
+    	   todos.add(new Todo(++todosCount, "manish","learn to talk",LocalDate.now().plusYears(3), false)) ;
+    	   todos.add(new Todo(++todosCount, "manish","learn Spring Boot",LocalDate.now().plusYears(1), false)) ;
+    	   todos.add(new Todo(++todosCount, "manish","learn Spring Security",LocalDate.now().plusYears(2), false)) ;
+    	   todos.add(new Todo(++todosCount, "manish","learn Spring Data JPA",LocalDate.now().plusYears(3), false)) ;
+    	   todos.add(new Todo(++todosCount, "manish","learn MySQL",LocalDate.now().plusYears(1), false)) ;
+    	   todos.add(new Todo(++todosCount, "manish","learn Git and Git-hub",LocalDate.now().plusYears(2), false)) ;
+    	   todos.add(new Todo(++todosCount, "manish","learn CSS",LocalDate.now().plusYears(3), false)) ;
     	   
        }
        

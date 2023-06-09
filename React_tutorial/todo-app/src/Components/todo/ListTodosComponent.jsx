@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
 import {retrieveAllTodosForUsernameApi, deleteTodoApi} from './api/TodoApiService';
+import { useContext } from "react";
+import {useAuth} from "./security/AuthContext";
+import { useNavigate } from "react-router-dom";
+
 
 export default function ListTodosComponent() {
     const today = new Date();
@@ -7,7 +11,16 @@ export default function ListTodosComponent() {
       today.getFullYear() + 12,
       today.getMonth(),
       today.getDay()
+
+
     );
+     
+    
+    const authContext= useAuth();
+    const usernameFromAuthContext= authContext.usernameAuthContext.toString();
+    console.log('username from auth context is :'+{usernameFromAuthContext});
+
+
 
     const[todos ,setTodos] = useState([]);
 
@@ -24,9 +37,13 @@ export default function ListTodosComponent() {
 
     const[message ,setMessage] = useState();
 
-    function refreshTodos(){
+    const navigate= useNavigate();
 
-      retrieveAllTodosForUsernameApi('Manish')
+
+
+  function refreshTodos(){
+
+      retrieveAllTodosForUsernameApi(usernameFromAuthContext)
     .then((response)=>{
       console.log(response)
       setTodos(response.data)
@@ -37,10 +54,12 @@ export default function ListTodosComponent() {
 
     }
     
-function deleteMethod(TodoUsername, TodoId){
+
+
+  function deleteTodo(TodoUsername, TodoId){
   deleteTodoApi(TodoUsername, TodoId)
     .then(()=>{
-      setMessage(`Delete of todo with ${TodoId} successful`);
+      setMessage(`Delete of todo with id= ${TodoId} successful`);
       refreshTodos()
     } 
     )
@@ -48,6 +67,12 @@ function deleteMethod(TodoUsername, TodoId){
     .finally(()=>console.log('CleanUp'));
 
     }
+
+    function updateTodo(TodoUsername, TodoId){
+       console.log(`Update with id = ${TodoId} clicked`);
+       navigate(`/todo/${TodoId}`);
+    
+        }
   
 
   
@@ -64,6 +89,7 @@ function deleteMethod(TodoUsername, TodoId){
                 <th>Done?</th>
                 <th>Target Date</th>
                 <th>Delete</th>
+                <th>Update</th>
               </tr>
             </thead>
   
@@ -74,7 +100,8 @@ function deleteMethod(TodoUsername, TodoId){
                   <td>{todo.description}</td>
                   <td>{todo.done.toString()}</td>
                   <td>{todo.targetDate}</td>
-                  <td><button className="btn btn-warning" onClick={()=>deleteMethod(todo.username, todo.id)} >Delete</button></td>
+                  <td><button className="btn btn-warning" onClick={()=>deleteTodo(todo.username, todo.id)} >Delete</button></td>
+                  <td><button className="btn btn-primary" onClick={()=>updateTodo(todo.username, todo.id)}>Update</button></td>
                 </tr>
               ))}
             </tbody>
