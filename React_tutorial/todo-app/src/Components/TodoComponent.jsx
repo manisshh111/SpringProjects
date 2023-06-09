@@ -1,8 +1,10 @@
 import {BrowserRouter, Routes, Route, useNavigate, Navigate, useParams, Link} from "react-router-dom";
-import {retrieveTodoApi} from './todo/api/TodoApiService'
+import {retrieveTodoApi, updateTodoApi, createTodoApi} from './todo/api/TodoApiService'
 import { useAuth } from "./todo/security/AuthContext";
 import { useEffect, useState } from "react";
 import {Formik, Form, Field, ErrorMessage} from 'formik';
+import moment from 'moment';
+
 export default function TodoComponent(){
 
     const {id} = useParams();
@@ -13,7 +15,8 @@ export default function TodoComponent(){
 
     const authContext= useAuth();
     const usernameFromAuthContext= authContext.usernameAuthContext;
-    console.log(usernameFromAuthContext);
+    // console.log(usernameFromAuthContext);
+    const navigate= useNavigate();
 
     useEffect(
         ()=> retrieveTodos(),
@@ -22,6 +25,7 @@ export default function TodoComponent(){
 
 
     function retrieveTodos(){
+        if(id!=-1){
         retrieveTodoApi(usernameFromAuthContext, id)
         .then((response)=>{
             setDescription(response.data.description)
@@ -30,6 +34,7 @@ export default function TodoComponent(){
           .catch(error=>console.log(error))
           .finally(()=>console.log('CleanUp'));
     }
+}
 
     useEffect(
         ()=> retrieveTodos(),
@@ -37,7 +42,35 @@ export default function TodoComponent(){
     )
 
     function onSubmit(values){
-        console.log(values);
+        const todo= { 
+            id: id,
+            username: usernameFromAuthContext,
+            description: values.description,
+            targetDate: values.targetDate,
+            done: false
+        }
+        if(id==-1){
+            createTodoApi(usernameFromAuthContext, todo)
+            .then((response)=>{
+               console.log(response);
+               navigate('/todos');
+           })
+             .catch(error=>console.log(error))
+             .finally(()=>console.log('CleanUp'));
+        }
+        else{
+            updateTodoApi(usernameFromAuthContext, id, todo)
+            .then((response)=>{
+               console.log(response);
+               navigate('/todos');
+           })
+             .catch(error=>console.log(error))
+             .finally(()=>console.log('CleanUp'));
+        }
+
+       
+     
+      
     }
 
     function validate(values){
@@ -45,12 +78,12 @@ export default function TodoComponent(){
             // description: 'Enter a valid description',
             // targetDate: 'Enter a valid Target Date'
         };
-        console.log(values);
+        // console.log(values);
         if(values.description.length<5){
         errors.description= 'Enter atleast 5 characters'
         }
 
-        if(values.targetDate==null){
+        if(values.targetDate==null || values.targetDate=='' || !moment(values.targetDate).isValid()){
             errors.description= 'Enter a target date'
             }
         return errors;

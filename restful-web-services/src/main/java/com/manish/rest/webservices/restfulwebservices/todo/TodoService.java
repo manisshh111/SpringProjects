@@ -31,7 +31,7 @@ public class TodoService {
     	   todos.add(new Todo(++todosCount, "manish","learn MySQL",LocalDate.now().plusYears(1), false)) ;
     	   todos.add(new Todo(++todosCount, "manish","learn Git and Git-hub",LocalDate.now().plusYears(2), false)) ;
     	   todos.add(new Todo(++todosCount, "manish","learn CSS",LocalDate.now().plusYears(3), false)) ;
-    	   
+    	   System.out.println("hello");
        }
        
        public static  List<Todo> findByUsername(String username){
