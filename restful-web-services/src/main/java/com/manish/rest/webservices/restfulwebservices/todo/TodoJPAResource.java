@@ -68,7 +68,7 @@ public class TodoJPAResource {
 	@PostMapping(path="/users/{username}/todos")
 	public Todo createTodo( @PathVariable String username, @RequestBody Todo todo) {
         todo.setUsername(username);
-        todo.setId(null);
+       // todo.setId(null);
         return todoRepository.save(todo);
 		
 		
